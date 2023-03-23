@@ -1,5 +1,5 @@
 import React from "react";
-import Calculator from "./Calculator";
+import Calculator from '../../../client/src/components/Calculator';
 
 // Calling Calculator function in input slider area
 

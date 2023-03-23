@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Sliders from "./Sliders";
-import Graph from "./Graph";
+
+import Sliders from '../../../client/src/components/Sliders';
+import Graph from '../../../client/src/components/Graph';
 import axios from "axios";
+
 
 function Calculator() {
   const [MonthlyInvestment, setMonthlyInvestment] = useState(500);
   const [InvestmentPeriod, setInvestmentPeriod] = useState(1);
   const [RateOfReturn, setRateOfReturn] = useState(1);
   const [YearlyIncrement, setYearlyIncrement] = useState(1);
-  const [TotalSIPWithStepUp, setTotalSIPWithStepUp] = useState();
-  const [graph,setGraph]=useState();
-  const [MonthlyInvest, setMonthlyInvest]= useState();
-
+  const [result, setResult]=useState();
+  
   // updating  input values to change graph data for backend
 
   const updateValue =( type, value) =>{
@@ -41,13 +41,18 @@ function Calculator() {
                     }   
          }
         ).then((res) =>{
-          setTotalSIPWithStepUp(res.data.fresult.TotalSIPWithStepUp);
-          setGraph(res.data.fresult.graph);
-          setMonthlyInvest(res.data.fresult.MonthlyInvest)
+          if(res.data.status === -1)
+          {
+            alert("Please enter valid values");
+          }
+          else{
+            setResult(res.data);
+          }
         }
       );
   },[MonthlyInvestment,InvestmentPeriod,RateOfReturn,YearlyIncrement]) 
-     
+  
+  console.log(result);
      
   return (
     <>
@@ -67,7 +72,7 @@ function Calculator() {
             YearlyIncrement={YearlyIncrement}
             updateValue = {updateValue}
           />
-        <Graph graph={graph} MonthlyInvest={MonthlyInvest} InvestmentPeriod={InvestmentPeriod} TotalSIPWithStepUp={TotalSIPWithStepUp} />
+        <Graph result={result} InvestmentPeriod={InvestmentPeriod}/>
         </div>
       </div>
     </>
