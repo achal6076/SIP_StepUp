@@ -7,6 +7,8 @@ import Slider from "@mui/material/Slider";
 import MuiInput from "@mui/material/Input";
 import { useState } from "react";
 
+// Changing and Displaying data for sliders 
+
 function SliderCalculator(props) {
   const [inputValue, setInputValue] = useState(props.minimum);
 
@@ -197,11 +199,14 @@ function SliderCalculator(props) {
   const Input2 = styled(MuiInput)`
     width: 80px;
   `;
+// updating slider values 
 
   const handleSliderChange = (event, newValue) => {
     props.setValue(props.index, newValue);
     setInputValue(newValue);
   };
+
+// updating input values 
 
   const handleInputChange = (event) => {
     let val = event.target.value;

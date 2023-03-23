@@ -12,6 +12,8 @@ function Calculator() {
   const [graph,setGraph]=useState();
   const [MonthlyInvest, setMonthlyInvest]= useState();
 
+  // updating  input values to change graph data for backend
+
   const updateValue =( type, value) =>{
     if(type === 0){
       setMonthlyInvestment(value);
@@ -26,7 +28,8 @@ function Calculator() {
       setYearlyIncrement(value);
     }
   }
-  
+  // axios call for graph 
+
   useEffect(()=>{
     axios.get('/getResult', 
                    { 

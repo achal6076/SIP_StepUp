@@ -1,6 +1,8 @@
 import React from 'react';
 import SliderCalculator from './SliderCalculator';
 
+// Type of Sliders 
+
 function Sliders(props) {
   return (
     <div className='sliders' >

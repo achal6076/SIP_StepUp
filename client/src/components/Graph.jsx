@@ -9,7 +9,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+
+// Handling Graph area using inputs from sliders 
 function Graph(props) {
+
+  // Updating rupees in Indian standard
   function toIndianRupees(sum) {
     return sum
       .toString()
