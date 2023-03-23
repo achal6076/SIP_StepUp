@@ -53,8 +53,16 @@ function SliderCalculator(props) {
       label: "5",
     },
     {
-      value: 10,
-      label: "10",
+      value: 7,
+      label: "7",
+    },
+    {
+      value: 9,
+      label: "9",
+    },
+    {
+      value: 11,
+      label: "11",
     },
     {
       value: 13,
@@ -65,16 +73,24 @@ function SliderCalculator(props) {
       label: "15",
     },
     {
-      value: 18,
-      label: "18",
+      value: 17,
+      label: "17",
     },
     {
-      value: 20,
-      label: "20",
+      value: 19,
+      label: "19",
     },
     {
-      value: 24,
-      label: "24",
+      value: 21,
+      label: "21",
+    },
+    {
+      value: 23,
+      label: "23",
+    },
+    {
+      value: 25,
+      label: "25",
     },
     {
       value: 27,
@@ -209,13 +225,13 @@ function SliderCalculator(props) {
 // updating input values 
 
   const handleInputChange = (event) => {
-    let val = event.target.value;
+    let val = Number(event.target.value);
     if (val.startsWith("-")) {
-      alert("Please Enter valid value .");
+      // alert("Please Enter valid value .");
 
       setInputValue(val);
       props.setValue(props.index, props.minimum);
-      return;
+      // return;
     }
     if (val < props.minimum) {
       alert("please enter greater value");
@@ -235,25 +251,7 @@ function SliderCalculator(props) {
     props.setValue(props.index, val === "" ? props.minimum : val);
   };
 
-  const blur = (event) => {
-    let val = event.target.value;
-    if (val === "-") {
-      props.setValue(props.index, props.minimum);
-      setInputValue(props.minimum);
-      return;
-    }
-    val = Number(val);
-    if (val < props.minimum) {
-      props.setValue(props.index, props.minimum);
-      setInputValue(props.minimum);
-      return;
-    }
-    if (val > props.maximum) {
-      props.setValue(props.index, props.maximum);
-      setInputValue(props.maximum);
-      return;
-    }
-  };
+ 
   return (
     <div className="slider-area">
       <Box sx={{ width: 510 }}>
@@ -266,7 +264,6 @@ function SliderCalculator(props) {
             <Input2
               value={inputValue}
               size="small"
-              onBlur={blur}
               onChange={handleInputChange}
               inputProps={{
                 step: props.steps,

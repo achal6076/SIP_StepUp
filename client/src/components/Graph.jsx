@@ -33,18 +33,18 @@ function Graph(props) {
             </span>{" "}
             you will have
           </span>
-          <h2>₹ {props.result && toIndianRupees(Number(props.result.fresult.TotalSIPWithStepUp))}</h2>
+          <h2>₹ {props.result && toIndianRupees(Number(props.result.TotalSIPWithStepUp))}</h2>
           <p>
             That's
             <span className="currencyRupeeInPara">
               ₹{" "}
               {props.result &&toIndianRupees(
-                Number(props.result.fresult.TotalSIPWithStepUp - props.result.fresult.MonthlyInvest)
+                Number(props.result.TotalSIPWithStepUp - props.result.MonthlyInvest)
               )}
             </span>{" "}
             as potential capital gains on your investment of
             <span className="currencyRupeeInPara2">
-              ₹ {props.result && toIndianRupees(Number(props.result.fresult.MonthlyInvest))}
+              ₹ {props.result && toIndianRupees(Number(props.result.MonthlyInvest))}
             </span>
           </p>
         </div>
@@ -54,7 +54,7 @@ function Graph(props) {
             height={550}
             min={0}
             max={5000000}
-            data={props.result && props.result.fresult.graph}
+            data={props.result && props.result.graph}
             margin={{
               top:5,
               bottom:20,

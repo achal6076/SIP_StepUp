@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 
+import axios from "axios";
 import Sliders from '../../../client/src/components/Sliders';
 import Graph from '../../../client/src/components/Graph';
-import axios from "axios";
+
+
 
 
 function Calculator() {
@@ -28,6 +30,8 @@ function Calculator() {
       setYearlyIncrement(value);
     }
   }
+
+  
   // axios call for graph 
 
   useEffect(()=>{
@@ -43,10 +47,10 @@ function Calculator() {
         ).then((res) =>{
           if(res.data.status === -1)
           {
-            alert("Please enter valid values");
+            alert(res.data.message);
           }
           else{
-            setResult(res.data);
+            setResult(res.data.fresult);
           }
         }
       );
