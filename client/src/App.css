@@ -6,78 +6,71 @@
 
 body {
   margin: 0%;
-}
-
-.sipCalculator {
-  height: 100vh;
+  padding: 0%;
   display: block;
-  width: 100%;
-  background-color: #000000;
-  position: relative;
 }
 
-.sideBar {
+
+.leftSideBox {
   position: relative;
-  background: #526FE4;
+  background: #526fe4;
   width: 15%;
   height: 100vh;
   display: inline-block;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
-
-
-.rightPanel {
+.rightSideBox {
   display: inline-block;
   background-color: #f1f5fa;
   width: 85%;
-  height: inherit;
+  height: 100vh;
   position: absolute;
- 
 }
 
-.calculator {
+.rightMain {
   background-color: #fff;
   padding: 0px 10px 10px 10px;
   margin: 20px;
   position: relative;
-
 }
 
-.sliders{
+.sliders {
   width: 50%;
-  border: 1px solid #EAEBED;
+  border: 1px solid #eaebed;
   margin: 10px;
   display: inline-block;
+  /* overflow-wrap: wrap; */
+  /* position: absolute; */
+  overflow: auto;
 }
 
-.calculator .calculatorText {
+.rightMain .calculatorText {
   padding-left: 18px;
   color: #595959;
 }
 
-.container {
+.leftContainer {
   font-size: small;
   position: relative;
 }
 
-.graphi {
+.rightContainer {
   position: absolute;
   width: 45%;
   height: 87%;
   display: inline-block;
-  border: 1px solid #EAEBED;
+  border: 1px solid #eaebed;
   margin: 10px;
-  padding: 20px;
+  padding: 20px 10px;
   /* float: left; */
 }
 
-
-h3, h4 {
+/* h3,h4 {
   margin: 10px;
   font-weight: normal;
   font-family: sans-serif;
-}
+} */
 
 h2 {
   padding-top: 30px;
@@ -85,49 +78,45 @@ h2 {
   font-family: sans-serif;
 }
 
-p {
+/* p {
   font-weight: lighter;
   font-family: sans-serif;
-}
+} */
 
 svg {
   padding-left: 20px;
 }
 
-.slide {
+/* .slide {
   height: auto;
-}
+} */
 
-.text-div {
+/* .text-div {
   display: block;
-}
+} */
 
-.text-div h3, .text-div input {
+/* .text-div h3,
+.text-div input {
   display: inline-block;
   width: auto;
-}
+} */
 
-.text-div input {
+/* .text-div input {
   margin: auto;
   width: 60px;
-}
+} */
 
-.desc-text {
+/* .desc-text {
   margin-left: 20px;
   margin-top: -10px;
-}
+} */
 
-.calc_text {
+/* .calc_text {
   padding-top: 5px;
-}
+} */
 
 .graph-div {
   margin-left: -15px;
-
-}
-
-.demo2 {
-  position: relative;
 }
 
 .sliderInput {
@@ -137,57 +126,81 @@ svg {
   right: 0;
 }
 
-.slider-area {
+.sliderArea {
   margin: 15px;
   padding: 7px;
+  overflow: visible;
 }
 
 .css-1eoe787-MuiSlider-markLabel {
   font-size: -0.125rem;
 }
 
-.textforgraph {
+.textForGraph {
   margin-top: 0%;
   font-size: 18px;
   padding-top: 10px;
 }
 
-.textforgraph span {
+.textForGraph span {
   color: grey;
   margin-left: 10px;
   margin-top: 10px;
 }
 
-.textforgraph .AfterYearsOf {
+.textForGraph .afterYearsOf {
   color: black;
   font-weight: bold;
 }
 
-.textforgraph h2 {
+.textForGraph h2 {
   color: #2c74b3;
   margin-left: 10px;
   font-weight: bold;
   margin-top: -15px;
 }
 
-.textforgraph p {
+.textForGraph p {
   color: grey;
   margin-left: 12px;
   margin-top: -19px;
   font-size: 20px;
 }
 
-.textforgraph p .currencyRupeeInPara {
+.textForGraph p .currencyRupeeInPara {
   color: #ff6e31;
   margin-left: 10px;
 }
 
-.textforgraph p .currencyRupeeInPara2 {
+.textForGraph p .currencyRupeeInPara2 {
   color: #03c988;
   margin-left: 10px;
   font-weight: bold;
 }
 
-svg, .graph-div{
+svg,
+.graph-div {
   overflow: visible;
+}
+
+@media (max-width: 1048px) {
+  .rightContainer {
+    display: block;
+    height: 250px;
+  }
+  .rightContainer p {
+    font-size: small;
+  }
+  .sliderArea p {
+    font-size: small;
+  }
+
+  .textForGraph h2,
+  span {
+    font-size: small;
+  }
+  .textForGraph h2,
+  p {
+    padding-top: 10px;
+  }
 }

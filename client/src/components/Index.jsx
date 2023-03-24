@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import axios from "axios";
-import Sliders from '../../../client/src/components/Sliders';
-import Graph from '../../../client/src/components/Graph';
-
-
-
+import Sliders from '../../../client/src/components/sliders'
+import Graph from '../../../client/src/components/graph';
+import Error from "../../../client/src/components/error";
 
 function Calculator() {
   const [MonthlyInvestment, setMonthlyInvestment] = useState(500);
@@ -13,6 +11,7 @@ function Calculator() {
   const [RateOfReturn, setRateOfReturn] = useState(1);
   const [YearlyIncrement, setYearlyIncrement] = useState(1);
   const [result, setResult]=useState();
+  const [error, setError] = useState();
   
   // updating  input values to change graph data for backend
 
@@ -47,7 +46,7 @@ function Calculator() {
         ).then((res) =>{
           if(res.data.status === -1)
           {
-            alert(res.data.message);
+            setError(res.data.message);
           }
           else{
             setResult(res.data.fresult);
@@ -56,11 +55,11 @@ function Calculator() {
       );
   },[MonthlyInvestment,InvestmentPeriod,RateOfReturn,YearlyIncrement]) 
   
-  console.log(result);
+  // console.log(result);
      
   return (
     <>
-      <div className="calculator">
+      <div className="rightMain">
         <div className="calculatorText">
           <h2> SIP Step Up Calculator</h2>
           <p>
@@ -68,7 +67,7 @@ function Calculator() {
             investment
           </p>
         </div>
-        <div className="container">
+        <div className="leftContainer">
           <Sliders
             MonthlyInvestment={MonthlyInvestment}
             InvestmentPeriod={InvestmentPeriod}
@@ -76,7 +75,8 @@ function Calculator() {
             YearlyIncrement={YearlyIncrement}
             updateValue = {updateValue}
           />
-        <Graph result={result} InvestmentPeriod={InvestmentPeriod}/>
+           {error ? <h2 className="rightContainer">{error}</h2> : <Graph result={result} InvestmentPeriod={InvestmentPeriod} />}
+        {/* <Graph result={result} InvestmentPeriod={InvestmentPeriod}/> */}
         </div>
       </div>
     </>

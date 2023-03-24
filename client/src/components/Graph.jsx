@@ -23,11 +23,11 @@ function Graph(props) {
 
   return (
     <>
-      <div className="graphi">
-        <div className="textforgraph">
+      <div className="rightContainer">
+        <div className="textForGraph">
           <span>
             After{" "}
-            <span className="AfterYearsOf">
+            <span className="afterYearsOf">
               {" "}
               {props.InvestmentPeriod} year's
             </span>{" "}
@@ -57,8 +57,8 @@ function Graph(props) {
             data={props.result && props.result.graph}
             margin={{
               top:5,
-              bottom:20,
-              left: 7,
+              bottom:28,
+              left: 4,
               right:2,
             }}
           >

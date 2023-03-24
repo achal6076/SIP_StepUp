@@ -1,7 +1,7 @@
 import "./App.css";
 
 import React from "react";
-import SipCalculator from "./components/SipCalculator";
+import SipCalculator from "./components/sipCalculator";
 
 function App(){
 

@@ -7,10 +7,9 @@ import Slider from "@mui/material/Slider";
 import MuiInput from "@mui/material/Input";
 import { useState } from "react";
 
-// Changing and Displaying data for sliders 
+// Changing and Displaying data for sliders
 
-function SliderCalculator(props) {
-  const [inputValue, setInputValue] = useState(props.minimum);
+
 
   const MonthlyInvestmentArray = [
     {
@@ -37,7 +36,7 @@ function SliderCalculator(props) {
       value: 100000,
       label: "100000",
     },
-  ];
+ ];
 
   const InvestmentPeriodArray = [
     {
@@ -215,30 +214,23 @@ function SliderCalculator(props) {
   const Input2 = styled(MuiInput)`
     width: 80px;
   `;
-// updating slider values 
-
+  // updating slider values
+  function SliderCalculator(props) {
+    const [inputValue, setInputValue] = useState(props.minimum);
   const handleSliderChange = (event, newValue) => {
     props.setValue(props.index, newValue);
     setInputValue(newValue);
   };
 
-// updating input values 
+  // updating input values
 
   const handleInputChange = (event) => {
-    let val = Number(event.target.value);
-    if (val.startsWith("-")) {
-      // alert("Please Enter valid value .");
-
-      setInputValue(val);
-      props.setValue(props.index, props.minimum);
-      // return;
-    }
+    let val = event.target.value;
+    
     if (val < props.minimum) {
-      alert("please enter greater value");
-
       setInputValue(val);
-      props.setValue(props.index, props.minimum);
-      return;
+      props.setValue(props.index,props.minimum)
+      
     }
     if (val > props.maximum) {
       alert("Please Enter less than 1,00,000");
@@ -251,11 +243,29 @@ function SliderCalculator(props) {
     props.setValue(props.index, val === "" ? props.minimum : val);
   };
 
- 
+  const blur = (event) => {
+    let val = event.target.value;
+    if (val === "-") {
+      props.setValue(props.index, props.minimum);
+      setInputValue(props.minimum);
+      return;
+    }
+    val = Number(val);
+    if (val < props.minimum) {
+      props.setValue(props.index, props.minimum);
+      setInputValue(props.minimum);
+      return;
+    }
+    if (val > props.maximum) {
+      props.setValue(props.index, props.maximum);
+      setInputValue(props.maximum);
+      return;
+    }
+  };
   return (
-    <div className="slider-area">
-      <Box sx={{ width: 510 }}>
-        <Grid className="demo2" container>
+    <div className="sliderArea">
+      <Box sx={{ maxWidth: 550 }}>
+        <Grid  container>
           <Grid item>
             <Typography gutterBottom>{TitleArray[props.index]}</Typography>
           </Grid>
@@ -264,12 +274,14 @@ function SliderCalculator(props) {
             <Input2
               value={inputValue}
               size="small"
+              type= "number"
+              onBlur={blur}
               onChange={handleInputChange}
               inputProps={{
                 step: props.steps,
                 minimum: props.minimum,
                 max: props.maximum,
-                types: "number",
+                types: 'number'
               }}
             />
           </Grid>
