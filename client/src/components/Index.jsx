@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import axios from "axios";
-import Sliders from '../../../client/src/components/sliders'
 import Graph from '../../../client/src/components/graph';
-import Error from "../../../client/src/components/error";
+import Sliders from '../../../client/src/components/sliders';
 
 function Calculator() {
   const [MonthlyInvestment, setMonthlyInvestment] = useState(500);
@@ -11,7 +10,6 @@ function Calculator() {
   const [RateOfReturn, setRateOfReturn] = useState(1);
   const [YearlyIncrement, setYearlyIncrement] = useState(1);
   const [result, setResult]=useState();
-  const [error, setError] = useState();
   
   // updating  input values to change graph data for backend
 
@@ -31,6 +29,14 @@ function Calculator() {
   }
 
   
+  // Updating rupees in Indian standard
+  function toIndianRupees(sum) {
+    return sum
+      .toString()
+      .replace(/\D/g, "")
+      .replace(/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/g, "$1,");
+  }
+
   // axios call for graph 
 
   useEffect(()=>{
@@ -46,7 +52,7 @@ function Calculator() {
         ).then((res) =>{
           if(res.data.status === -1)
           {
-            setError(res.data.message);
+            alert(res.data.message);
           }
           else{
             setResult(res.data.fresult);
@@ -55,7 +61,7 @@ function Calculator() {
       );
   },[MonthlyInvestment,InvestmentPeriod,RateOfReturn,YearlyIncrement]) 
   
-  // console.log(result);
+  console.log(result);
      
   return (
     <>
@@ -67,7 +73,7 @@ function Calculator() {
             investment
           </p>
         </div>
-        <div className="leftContainer">
+        <div className="container">
           <Sliders
             MonthlyInvestment={MonthlyInvestment}
             InvestmentPeriod={InvestmentPeriod}
@@ -75,8 +81,7 @@ function Calculator() {
             YearlyIncrement={YearlyIncrement}
             updateValue = {updateValue}
           />
-           {error ? <h2 className="rightContainer">{error}</h2> : <Graph result={result} InvestmentPeriod={InvestmentPeriod} />}
-        {/* <Graph result={result} InvestmentPeriod={InvestmentPeriod}/> */}
+        <Graph result={result} InvestmentPeriod={InvestmentPeriod} toIndianRupees={toIndianRupees}/>
         </div>
       </div>
     </>

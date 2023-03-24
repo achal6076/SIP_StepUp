@@ -10,7 +10,6 @@ import { useState } from "react";
 // Changing and Displaying data for sliders
 
 
-
   const MonthlyInvestmentArray = [
     {
       value: 500,
@@ -217,6 +216,7 @@ import { useState } from "react";
   // updating slider values
   function SliderCalculator(props) {
     const [inputValue, setInputValue] = useState(props.minimum);
+  
   const handleSliderChange = (event, newValue) => {
     props.setValue(props.index, newValue);
     setInputValue(newValue);
@@ -226,46 +226,56 @@ import { useState } from "react";
 
   const handleInputChange = (event) => {
     let val = event.target.value;
-    
-    if (val < props.minimum) {
-      setInputValue(val);
-      props.setValue(props.index,props.minimum)
-      
-    }
-    if (val > props.maximum) {
-      alert("Please Enter less than 1,00,000");
+    if (val.startsWith("-")) {
+      // alert("Please Enter valid value .");
 
       setInputValue(val);
-      props.setValue(props.index, props.maximum);
+      props.setInputValue(props.minimum)
+      // props.setValue(props.index, props.minimum);
+      return;
+    }
+    if (val < props.minimum) {
+      // alert("please enter greater value");
+      setInputValue(val);
+      props.setInputValue(props.minimum)
+      // props.setValue(props.index, props.minimum);
+      return; 
+    }
+    if (val > props.maximum) {
+      // alert("Please Enter less than 1,00,000");
+
+      setInputValue(val);
+      props.setValue(props.maximum)
+      // props.setValue(props.index, props.maximum);
       return;
     }
     setInputValue(val);
     props.setValue(props.index, val === "" ? props.minimum : val);
   };
 
-  const blur = (event) => {
-    let val = event.target.value;
-    if (val === "-") {
-      props.setValue(props.index, props.minimum);
-      setInputValue(props.minimum);
-      return;
-    }
-    val = Number(val);
-    if (val < props.minimum) {
-      props.setValue(props.index, props.minimum);
-      setInputValue(props.minimum);
-      return;
-    }
-    if (val > props.maximum) {
-      props.setValue(props.index, props.maximum);
-      setInputValue(props.maximum);
-      return;
-    }
-  };
+  // const blur = (event) => {
+  //   let val = event.target.value;
+  //   if (val === "-") {
+  //     props.setValue(props.index, props.minimum);
+  //     setInputValue(props.minimum);
+  //     return;
+  //   }
+  //   val = Number(val);
+  //   if (val < props.minimum) {
+  //     props.setValue(props.index, props.minimum);
+  //     setInputValue(props.minimum);
+  //     return;
+  //   }
+  //   if (val > props.maximum) {
+  //     props.setValue(props.index, props.maximum);
+  //     setInputValue(props.maximum);
+  //     return;
+  //   }
+  // };
   return (
     <div className="sliderArea">
-      <Box sx={{ maxWidth: 550 }}>
-        <Grid  container>
+      <Box sx={{ maxWidth: 510 }}>
+        <Grid className="demo2" container>
           <Grid item>
             <Typography gutterBottom>{TitleArray[props.index]}</Typography>
           </Grid>
@@ -274,14 +284,12 @@ import { useState } from "react";
             <Input2
               value={inputValue}
               size="small"
-              type= "number"
-              onBlur={blur}
+              // onBlur={blur}
               onChange={handleInputChange}
               inputProps={{
                 step: props.steps,
                 minimum: props.minimum,
-                max: props.maximum,
-                types: 'number'
+                max: props.maximum
               }}
             />
           </Grid>

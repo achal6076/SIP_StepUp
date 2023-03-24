@@ -1,5 +1,5 @@
 import React from "react";
-import Calculator from '.';
+import Calculator from './Index';
 
 
 // Calling Calculator function in input slider area
@@ -9,9 +9,9 @@ function RightPanel() {
     <div className="rightSideBox">
         
         <h3>←Back</h3>
-        
+        <div className="calculator">
           <Calculator />
-        
+        </div>
       </div>
 
   );

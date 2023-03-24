@@ -13,14 +13,6 @@ import {
 // Handling Graph area using inputs from sliders 
 function Graph(props) {
 
-  // Updating rupees in Indian standard
-  function toIndianRupees(sum) {
-    return sum
-      .toString()
-      .replace(/\D/g, "")
-      .replace(/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/g, "$1,");
-  }
-
   return (
     <>
       <div className="rightContainer">
@@ -33,22 +25,22 @@ function Graph(props) {
             </span>{" "}
             you will have
           </span>
-          <h2>₹ {props.result && toIndianRupees(Number(props.result.TotalSIPWithStepUp))}</h2>
+          <h2>₹ {props.result && props.toIndianRupees(Number(props.result.TotalSIPWithStepUp))}</h2>
           <p>
             That's
             <span className="currencyRupeeInPara">
               ₹{" "}
-              {props.result &&toIndianRupees(
+              {props.result && props.toIndianRupees(
                 Number(props.result.TotalSIPWithStepUp - props.result.MonthlyInvest)
               )}
             </span>{" "}
             as potential capital gains on your investment of
             <span className="currencyRupeeInPara2">
-              ₹ {props.result && toIndianRupees(Number(props.result.MonthlyInvest))}
+              ₹ {props.result && props.toIndianRupees(Number(props.result.MonthlyInvest))}
             </span>
           </p>
         </div>
-        <ResponsiveContainer className="graph-div" width="90%" aspect={1.6}>
+        <ResponsiveContainer className="graphDiv" width="90%" aspect={1.6}>
           <LineChart
             width={550}
             height={550}
@@ -57,8 +49,8 @@ function Graph(props) {
             data={props.result && props.result.graph}
             margin={{
               top:5,
-              bottom:28,
-              left: 4,
+              bottom:20,
+              left: 7,
               right:2,
             }}
           >

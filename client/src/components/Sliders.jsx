@@ -1,5 +1,5 @@
 import React from 'react';
-import SliderCalculator from '../../../client/src/components/sliderCalculator'
+import SliderCalculator from './sliderCalculator';
 
 // Type of Sliders 
 
