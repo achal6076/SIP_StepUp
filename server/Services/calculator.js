@@ -1,53 +1,67 @@
-const serviceData = async ({MonthlyInvestment,InvestmentPeriod,RateOfReturn,YearlyIncrement})=>{ 
+const serviceData = async ({
+  monthlyInvestment,
+  investmentPeriod,
+  rateOfReturn,
+  yearlyIncrement,
+}) => {
   try {
-    
-  let monthlyInvestment = Number(MonthlyInvestment);
-  let investmentPeriod = Number(InvestmentPeriod);
-  let rateOfReturn = Number(RateOfReturn);
-  let yearlyIncrement = Number(YearlyIncrement);
-      let PeriodInMonth = investmentPeriod*12;
-      // console.log(typeof InvestmentPeriod);
-      rateOfReturn = (rateOfReturn)/1200;
+    let monthlyInvestment = parseInt(monthlyInvestment);
+    let investmentPeriod = parseInt(investmentPeriod);
+    let rateOfReturn = parseInt(rateOfReturn);
+    let yearlyIncrement = parseInt(yearlyIncrement);
 
-      let incrementedAmount=0, TotalSIPWithStepUp=0, CummulationAmount=0 ,MonthlyInvest=0;
+    let totalSipWithStepUp = 0,
+      cummulationAmount = 0,
+      totalInvestmentAmount = 0,
+      year, periodInMonth=0;
+    
       const graph = [
-        {
-         years: 0,
-         sipStepUp: 0,
-         investment: 0
-        }
-      ];
-      for(let i=1; i<=PeriodInMonth; i++)
-      {        
-      if(i!==1 && i%12==1)
       {
-      incrementedAmount=(monthlyInvestment*(yearlyIncrement/100));
-      monthlyInvestment += incrementedAmount;
-      }
-      
-      MonthlyInvest += monthlyInvestment;
-      CummulationAmount =monthlyInvestment*(Math.pow((1+rateOfReturn),(PeriodInMonth-i+1)));  
-      TotalSIPWithStepUp += CummulationAmount;       
-      if(i%12==0){
-        const obj = {
-         years: i/12,
-         sipStepUp: Math.round(TotalSIPWithStepUp).toFixed(0),
-         investment: Math.round(MonthlyInvest).toFixed(0)
+        years: 0,
+        sipStepUp: 0,
+        investment: 0,
+      },
+    ];
+    
+    rateOfReturn = rateOfReturn / 1200;
+    
+    for (year = 1; year <= investmentPeriod; year++) {
+    
+      periodInMonth = year * 12;
+    
+      for (let i = 1; i <= periodInMonth; i++) {
+        if (i !== 1) {
+          if (i % 12 == 1) {
+            let incrementedAmount = monthlyInvestment * (yearlyIncrement / 100);
+            monthlyInvestment += incrementedAmount;
+          }
         }
-        graph.push(obj)
-        }      
+
+        cummulationAmount = monthlyInvestment * (Math.pow(1 + rateOfReturn, (periodInMonth - i + 1)));
+        totalSipWithStepUp += cummulationAmount;
+        totalInvestmentAmount += monthlyInvestment*periodInMonth;
       }
-      const graphResult={
-        graph:graph,
-        TotalSIPWithStepUp:TotalSIPWithStepUp.toFixed(0),
-        MonthlyInvest:MonthlyInvest.toFixed(0)
-      }
-      return graphResult;
       
+      const obj = {
+        years: year,
+        sipStepUp: Math.round(totalSipWithStepUp).toFixed(0),
+        totalInvestmentAmount: Math.round(totalInvestmentAmount).toFixed(0),
+      };
+      
+      graph.push(obj);
+      
+    }
+    const graphResult = {
+      graph: graph,
+      totalSipWithStepUp: totalSipWithStepUp.toFixed(0),
+      totalInvestmentAmount: totalInvestmentAmount.toFixed(0),
+    };
+    
+    return graphResult;
+  
   } catch (error) {
     res.send(error);
-    
   }
-}
+};
 
 module.exports = serviceData;
