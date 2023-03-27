@@ -1,0 +1,219 @@
+* {
+  font-weight: lighter;
+  font-family: sans-serif;
+  transform-style: preserve-3d;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  margin: 0%;
+  padding: 0%;
+}
+
+
+
+.leftSideBox {
+  position: relative;
+  background: #526FE4;
+  width: 12%;
+  height: 100vh;
+  display: inline-block;
+}
+
+
+
+.rightSideBox {
+  display: inline-block;
+  background-color: #f1f5fa;
+  width: 88%;
+  height: 100vh;
+  position: absolute;
+ 
+}
+
+.rightSideBox .calculator .rightMain {
+  background-color: #fff;
+  padding: 0px 10px 10px 10px;
+  margin: 20px;
+  position: relative;
+
+}
+
+.rightSideBox .calculator .rightMain .container .leftContainer{
+  width: 48%;
+  border: 1px solid #EAEBED;
+  margin: 10px;
+  display: inline-block;
+  overflow: auto;
+}
+
+.rightSideBox .calculator .rightMain .calculatorText {
+  padding-left: 18px;
+  color: #595959;
+}
+
+.rightSideBox .calculator .rightMain .container {
+  font-size: small;
+  position: relative;
+}
+
+.rightSideBox .calculator .rightMain .container .rightContainer {
+  position: absolute;
+  width: 45%;
+  height: 87%;
+  display: inline-block;
+  border: 1px solid #EAEBED;
+  margin: 10px;
+  padding: 20px;
+}
+
+
+.rightSideBox .backBtn{
+  margin: 10px;
+  font-weight: normal;
+  font-family: sans-serif;
+}
+
+.rightSideBox .calculator .rightMain .calculatorText .calculatorTitle,
+.rightSideBox .calculator .rightMain .container .rightContainer .textForGraph .sipAmount {
+  padding-top: 30px;
+  padding-bottom: 20px;
+  font-weight: lighter;
+  font-family: sans-serif;
+}
+
+
+
+.rightSideBox .calculator .rightMain svg {
+  padding-left: 20px;
+}
+
+.rightSideBox .calculator .rightMain .container .rightContainer .graphDiv {
+  margin-left: -15px;
+
+}
+
+
+
+.rightSideBox .calculator .rightMain .container .leftContainer .sliderArea .sliderInput {
+  background-color: #f1f5fa;
+  border: 1px solid rgb(233, 230, 230);
+  position: absolute;
+  right: 0;
+}
+
+.rightSideBox .calculator .rightMain .container .leftContainer .sliderArea {
+  margin: 15px;
+  padding: 7px;
+  overflow: visible;
+}
+
+.rightSideBox .calculator .rightMain .container .leftContainer .sliderArea .invalidInput{
+  color: white;
+  background-color: red;
+  padding: 3px;
+  font-size: 14px;
+  margin: 2px 0px;
+  
+}
+
+.rightSideBox .calculator .rightMain .container .rightContainer .textForGraph {
+  margin-top: 0%;
+  font-size: 18px;
+  padding-top: 10px;
+}
+
+.rightSideBox .calculator .rightMain .container .rightContainer .textForGraph .spanParaGraph {
+  color: grey;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.rightSideBox .calculator .rightMain .container .rightContainer .textForGraph .afterYearsOf {
+  color: black;
+  font-weight: bold;
+}
+
+.rightSideBox .calculator .rightMain .container .rightContainer .textForGraph .sipAmount {
+  color: #2c74b3;
+  margin-left: 10px;
+  font-weight: bold;
+  margin-top: -15px;
+}
+/* css for text in above graph */
+.rightSideBox .calculator .rightMain .container .rightContainer .textForGraph .paraGraph {
+  color: grey;
+  margin-left: 12px;
+  margin-top: -19px;
+  font-size: 20px;
+}
+/* css for currency display */
+.rightSideBox .calculator .rightMain .container .rightContainer .textForGraph .paraGraph .currencyRupeeInPara {
+  color: #ff6e31;
+  margin-left: 10px;
+}
+/* css for currency display */
+.rightSideBox .calculator .rightMain .container .rightContainer .textForGraph .paraGraph .currencyRupeeInPara2 {
+  color: #03c988;
+  margin-left: 10px;
+  font-weight: bold;
+}
+/* Responsive Container css */
+svg, .graphDiv{
+  overflow: visible;
+}
+
+
+
+@media  (max-width: 1048px){
+  .rightSideBox .calculator .rightMain .container .rightContainer{
+    display: block;
+    width: 48%;
+  }
+  .rightSideBox .calculator .rightMain .container .rightContainer .paraGraph{
+    font-size: small;
+  
+  }
+  .rightSideBox .calculator .rightMain .container .leftContainer .sliderArea .paraGraph{
+    font-size: small;
+  }
+
+  .rightSideBox .calculator .rightMain .container .leftContainer{
+    width: 52%;
+  }
+
+  .rightSideBox .calculator .rightMain .container .rightContainer .textForGraph .sipAmount{
+    font-size: larger;
+    padding: 20px 5px;
+    
+  }
+
+  .rightSideBox .calculator .rightMain .container .rightContainer .textForGraph .spanParaGraph {
+    font-size: small;
+    
+  }
+}
+@media (max-width: 524px) {
+  *{
+    margin: 0%;
+    padding: 0%;
+  }
+  .leftSideBox{
+    display: none;
+  }
+
+  .rightSideBox{
+    width: 100%;
+  }
+ 
+  .rightSideBox .calculator .rightMain .container .rightContainer{
+    width: 88%;
+  } 
+  .rightSideBox .calculator .rightMain .container .leftContainer{
+    width: 96%;
+  }
+  .textForGraph span{
+    font-size: 20px;
+  }
+}
