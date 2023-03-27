@@ -13,48 +13,40 @@ import {
 // Handling Graph area using inputs from sliders 
 function Graph(props) {
 
-  // Updating rupees in Indian standard
-  function toIndianRupees(sum) {
-    return sum
-      .toString()
-      .replace(/\D/g, "")
-      .replace(/(\d+?)(?=(\d\d)+(\d)(?!\d))(\.\d+)?/g, "$1,");
-  }
-
   return (
     <>
-      <div className="graphi">
-        <div className="textforgraph">
-          <span>
+      <div className="rightContainer">
+        <div className="textForGraph">
+          <span className="spanParaGraph">
             After{" "}
-            <span className="AfterYearsOf">
+            <span className="afterYearsOf">
               {" "}
-              {props.InvestmentPeriod} year's
+              {props.investmentPeriod} year's
             </span>{" "}
             you will have
           </span>
-          <h2>₹ {toIndianRupees(Number(props.TotalSIPWithStepUp))}</h2>
-          <p>
+          <h2 className="sipAmount">₹ {props.result && props.toIndianRupees(Number(props.result.totalSipWithStepUp))}</h2>
+          <p className="paraGraph">
             That's
             <span className="currencyRupeeInPara">
               ₹{" "}
-              {toIndianRupees(
-                Number(props.TotalSIPWithStepUp - props.MonthlyInvest)
+              {props.result && props.toIndianRupees(
+                Number(props.result.totalSipWithStepUp - props.result.totalInvestmentAmount)
               )}
             </span>{" "}
             as potential capital gains on your investment of
             <span className="currencyRupeeInPara2">
-              ₹ {toIndianRupees(Number(props.MonthlyInvest))}
+              ₹ {props.result && props.toIndianRupees(Number(props.result.totalInvestmentAmount))}
             </span>
           </p>
         </div>
-        <ResponsiveContainer className="graph-div" width="90%" aspect={1.6}>
+        <ResponsiveContainer className="graphDiv" width="90%" aspect={1.6}>
           <LineChart
             width={550}
             height={550}
             min={0}
             max={5000000}
-            data={props.graph}
+            data={props.result && props.result.graph}
             margin={{
               top:5,
               bottom:20,
@@ -81,7 +73,7 @@ function Graph(props) {
             <Tooltip />
             <Line
               type="monotone"
-              dataKey="investment"
+              dataKey="totalInvestmentAmount"
               stroke="#2f50e8"
               r={0}
             />

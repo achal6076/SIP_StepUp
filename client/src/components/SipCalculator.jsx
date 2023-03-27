@@ -1,6 +1,6 @@
 import React from 'react'
-import SideBar from './sideBar'
-import RightPanel from './RightPanel'
+import SideBar from './sideBar';
+import RightPanel from './rightPanel';
 
 // main function for Displaying left panel and right panel 
 
